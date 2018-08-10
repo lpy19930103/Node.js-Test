@@ -1,8 +1,16 @@
 const express = require('express');
 const parser = require('body-parser');
-var multerUtil = require('./multerUtil');
+const multerUtil = require('./multerUtil');
+const cookieParser = require('cookie-parser');
+const util = require('util');
 
 const app = express();
+app.use(cookieParser());
+
+app.get('/', function (req, res) {
+    res.end(`cookie = ${ util.inspect(req.cookies)}`);
+});
+
 app.get('/get', function (req, res) {
     var response = {
         "first_name": req.query.first_name,
