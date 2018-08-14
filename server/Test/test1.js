@@ -42,8 +42,9 @@ function load() {
             if (err) return next(err);
             let $ = cheerio.load(sres.text);
             let items = [];
-            $("div.houseBox2").each(() => {
-                let $element = $("h5 a[target='_blank']");
+            $("h5 a[target='_blank']").each((idx, element) => {
+                console.log($(element).attr());
+                let $element = $(element);
                 items.push({
                     title: $element.attr('title'),
                     href: $element.attr('href')
